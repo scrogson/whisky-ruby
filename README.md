@@ -1,6 +1,9 @@
 # Whisky
 
-TODO: Write a gem description
+Whisky is a fantastic beverage. But it's also a tiny webframework (at least it
+will be). It currently doesn't do much, but I'm putting this project together
+as an exercise to get a better understanding of how to build something with
+Rack.
 
 ## Installation
 
@@ -18,7 +21,9 @@ Or install it yourself as:
 
 ## Usage
 
-TODO: Write usage instructions here
+WARNING: This is README Driven Development!
+
+Nothing in here works at this point.
 
 ## Contributing
 
