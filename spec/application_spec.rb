@@ -1,6 +1,6 @@
 require "spec_helper"
 
-describe 'Whisky' do
+describe Whisky do
 
   it "says hello" do
     get '/'
