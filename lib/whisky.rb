@@ -1,5 +1,7 @@
 require "whisky/version"
-require "whisky/routing"
+require "whisky/router"
+require "whisky/utils"
+require "whisky/object"
 
 module Whisky
   class Application
@@ -10,7 +12,7 @@ module Whisky
       when '/'
         return [200, { "Content-Type" => "text/html" }, ["Hello Whisky!"]]
       else
-        klass, action = get_controller_and_action(env)
+        klass, action = Router.get_controller_and_action(env)
         controller = klass.new(env)
         text = controller.send(action)
         [200, { "Content-Type" => "text/html" }, [text]]
