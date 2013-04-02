@@ -2,6 +2,7 @@ require "whisky/version"
 require "whisky/router"
 require "whisky/utils"
 require "whisky/object"
+require "whisky/controller"
 
 module Whisky
   class Application
@@ -17,16 +18,6 @@ module Whisky
         text = controller.send(action)
         [200, { "Content-Type" => "text/html" }, [text]]
       end
-    end
-  end
-
-  class Controller
-    def initialize(env)
-      @env = env
-    end
-
-    def env
-      @env
     end
   end
 end
