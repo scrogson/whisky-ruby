@@ -1,3 +1,4 @@
+require "rack/request"
 require "whisky/cask"
 
 module Whisky
@@ -13,6 +14,27 @@ module Whisky
       @env
     end
 
+    def response(text, status = 200, headers = {})
+      raise "Response already sent." if @response
+      @response = Rack::Response.new([text].flatten, status, headers)
+    end
+
+    def get_response
+      @response
+    end
+
+    def render_response(*args)
+      response(render(*args))
+    end
+
+    def request
+      @request ||= Rack::Request.new(@env)
+    end
+
+    def params
+      request.params
+    end
+
     def controller_name
       klass = self.class
       klass = klass.to_s.gsub(/Controller$/, '')
@@ -23,10 +45,7 @@ module Whisky
       filename = File.join("app", "views", controller_name, "#{view_name}.html.erb")
       template = File.read(filename)
       erb = Erubis::Eruby.new(template)
-      erb.result(locals.merge(
-        env: env,
-        controller_name: controller_name
-      ))
+      erb.result(binding())
     end
   end
 end

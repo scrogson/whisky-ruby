@@ -17,7 +17,12 @@ module Whisky
         klass, action = Router.get_controller_and_action(env)
         controller = klass.new(env)
         text = controller.send(action)
-        [200, { "Content-Type" => "text/html" }, [text]]
+        if controller.get_response
+          status, headers, response = controller.get_response.to_a
+          [status, headers, [response.body].flatten]
+        else
+          controller.render_response(action)
+        end
       end
     end
   end
