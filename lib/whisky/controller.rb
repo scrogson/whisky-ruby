@@ -1,5 +1,9 @@
+require "whisky/cask"
+
 module Whisky
   class Controller
+
+    include Whisky::Cask
 
     def initialize(env)
       @env = env

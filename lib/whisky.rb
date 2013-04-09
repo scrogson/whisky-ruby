@@ -3,6 +3,7 @@ require "whisky/router"
 require "whisky/utils"
 require "whisky/object"
 require "whisky/controller"
+require "whisky/cask/json"
 
 module Whisky
   class Application
